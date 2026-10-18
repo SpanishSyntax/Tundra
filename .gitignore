@@ -1,6 +1,8 @@
 # Ignored binary packages (managed via packages.tsv and download.sh)
+server/*.jar
 client/*.jar
 client/*.exe
+client/*.mrpack
 plugins/*.jar
 
 # Release bundles & temporary download artifacts

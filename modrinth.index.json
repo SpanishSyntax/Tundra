@@ -1,0 +1,58 @@
+{
+  "formatVersion": 1,
+  "game": "minecraft",
+  "versionId": "2.0.0",
+  "name": "Tundra Client (1.20.1)",
+  "summary": "Modernized Forge 1.20.1 client stack for Tundra (Embeddium + Oculus + JourneyMap)",
+  "dependencies": {
+    "minecraft": "1.20.1",
+    "forge": "47.4.10"
+  },
+  "files": [
+    {
+      "path": "mods/embeddium-0.3.31+mc1.20.1.jar",
+      "hashes": {
+        "sha1": "bb2fa8f3e493af16af9160d049f96c614a1faf2f",
+        "sha512": "ffbf2da4685260a4d5c14c621708bd20722563f084f042d3dfb0a7b87f048e39299648c854a93939129da0d23a15a91ec628560d601e76074b08e275f6e132e9"
+      },
+      "env": {
+        "client": "required",
+        "server": "unsupported"
+      },
+      "downloads": [
+        "https://cdn.modrinth.com/data/sk9rgfiA/versions/UTbfe5d1/embeddium-0.3.31%2Bmc1.20.1.jar"
+      ],
+      "fileSize": 1320675
+    },
+    {
+      "path": "mods/oculus-mc1.20.1-1.8.0.jar",
+      "hashes": {
+        "sha1": "984f774e71790deaec674c7587bd24e0711871b2",
+        "sha512": "1bb4ac77400d6684347988ed298a692c2cb15cf7923693607eb8739b171a20fef7412259e9e157111d9ce21779badab386029956f7d2283a9e611722a373e9d5"
+      },
+      "env": {
+        "client": "required",
+        "server": "unsupported"
+      },
+      "downloads": [
+        "https://cdn.modrinth.com/data/GchcoXML/versions/iQ1SwGc3/oculus-mc1.20.1-1.8.0.jar"
+      ],
+      "fileSize": 2851119
+    },
+    {
+      "path": "mods/journeymap-forge-1.20.1-6.0.7.jar",
+      "hashes": {
+        "sha1": "fb9411d6d516f604a8fa63ba505205d813d7caa1",
+        "sha512": "93f8514bb8bb24f31b67991940a2075ef9889e3eff2e57a6c1bc98828e3315c37d96c025e73318a2209602bfea71a0b3d2fd415bb347076b0c8a1daafae11746"
+      },
+      "env": {
+        "client": "required",
+        "server": "optional"
+      },
+      "downloads": [
+        "https://cdn.modrinth.com/data/lfHFW1mp/versions/HWDC99DO/journeymap-forge-1.20.1-6.0.7.jar"
+      ],
+      "fileSize": 4353808
+    }
+  ]
+}
