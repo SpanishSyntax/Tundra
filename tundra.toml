@@ -276,6 +276,9 @@ version = "11.1.1"
 sha256 = "aaf1f371a41d530785b679e3a2e1141dceec98651fc35d56dc0842b2740280ae"
 source_url = "https://github.com/PrismLauncher/PrismLauncher/releases/download/11.1.1/PrismLauncher-Windows-MSVC-Setup-11.1.1.exe"
 purpose = "Open-source Minecraft launcher with native Modrinth (.mrpack) one-click import."
+sha1 = "92791ac895a4d56045b2df2cb4968b9a49716db1"
+sha512 = "3ad415d6966512060d104a6cc11ebf91d2f95f16631fcefe3fc2047b7d26cb7dc8b45f1662f309fe30b65da0b36d83b4b87360e4730ec4079477293662917e89"
+file_size = 23964776
 
 [[packages]]
 key = "fabric-installer"
