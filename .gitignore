@@ -1,4 +1,4 @@
-# Ignored binary packages (managed via packages.tsv and download.sh)
+# Ignored binary packages (managed via tundra.toml and `tundra` CLI)
 server/*.jar
 client/*.jar
 client/*.exe
@@ -11,3 +11,13 @@ plugins/*.jar
 *.part
 *.tmp
 SHA256SUMS
+
+# Python build & cache artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+.ruff_cache/
+build/
+dist/
+*.egg-info/

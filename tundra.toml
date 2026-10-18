@@ -1,0 +1,377 @@
+# ==============================================================================
+# TUNDRA - Declarative Minecraft Server & Client Stack Manifest
+# Managed via `tundra`, `tundra-server`, and `tundra-client`
+# ==============================================================================
+
+[general]
+name = "Tundra"
+mc_version = "1.20.1"
+release_url = "https://github.com/SpanishSyntax/Tundra/releases/download/v2.0.0"
+
+# ==============================================================================
+# SERVER STACK CONFIGURATION (`tundra-server`)
+# Supported backends: "paper" (recommended), "purpur", "folia", "plugins-only", "fabric"
+# Note: Use "plugins-only" for managed hosts like Aternos where the panel provides the jar.
+# ==============================================================================
+
+[server]
+backend = "paper"
+plugins = [
+  "luckperms",
+  "vault",
+  "essentialsx",
+  "essentialsx-chat",
+  "essentialsx-spawn",
+  "essentialsx-protect",
+  "essentialsx-antibuild",
+  "multiverse-core",
+  "multiverse-inventories",
+  "multiverse-netherportals",
+  "multiverse-portals",
+  "multiverse-signportals",
+  "fastasyncworldedit",
+  "worldguard",
+  "chunky",
+]
+
+# ==============================================================================
+# CLIENT STACK CONFIGURATION (`tundra-client`)
+# Supported loaders: "fabric" (recommended: Sodium + Iris) or "forge" (Embeddium + Oculus)
+# ==============================================================================
+
+[client]
+loader = "fabric"
+loader_version = "0.19.5"
+include_prism_installer = true
+prism_version = "11.1.1"
+mods = [
+  "fabric-api",
+  "sodium",
+  "iris",
+  "journeymap",
+  "ferrite-core",
+  "entityculling",
+  "modmenu",
+]
+
+# ==============================================================================
+# LOCKED PACKAGE MANIFEST (`[[packages]]`)
+# Pinning exact versions, SHA256 checksums, and upstream CDN URLs.
+# ==============================================================================
+
+[[packages]]
+key = "paper"
+category = "server"
+file_path = "server/paper-1.20.1-196.jar"
+name = "PaperMC Server"
+version = "1.20.1-196"
+sha256 = "234a9b32098100c6fc116664d64e36ccdb58b5b649af0f80bcccb08b0255eaea"
+source_url = "https://fill-data.papermc.io/v1/objects/234a9b32098100c6fc116664d64e36ccdb58b5b649af0f80bcccb08b0255eaea/paper-1.20.1-196.jar"
+purpose = "High-performance async-capable fork of Spigot/Bukkit; required by FAWE"
+file_size = 43230582
+
+[[packages]]
+key = "luckperms"
+category = "plugins"
+file_path = "plugins/LuckPerms-Bukkit-5.5.71.jar"
+name = "LuckPerms"
+version = "v5.5.71-bukkit"
+sha256 = "49cecb66fa1fd22a133039a490e9c1e5095a238e7cd66eb9d2a16fe6c897550d"
+source_url = "https://cdn.modrinth.com/data/Vebnzrzj/versions/b0mk8uS6/LuckPerms-Bukkit-5.5.71.jar"
+purpose = "Core permissions & role authority (groups, prefixes, /lp editor); loads before Vault"
+sha1 = "fc8bb9919fa77c670b7ed5c284bcb66770ea71fc"
+sha512 = "188a91f0a543d23bfda32385fca6db63d61e49c8a422bd452a260bd9cbc6a7d7fe45071199e9fca8f3ce43c2b41ee84fd315bd15464577028ff3951a7d4fab27"
+file_size = 1501521
+
+[[packages]]
+key = "vault"
+category = "plugins"
+file_path = "plugins/Vault.jar"
+name = "Vault"
+version = "1.7.3-b131"
+sha256 = "a6b5ed97f43a5cf5bbaf00a7c8cd23c5afc9bd003f849875af8b36e6cf77d01d"
+source_url = "https://github.com/MilkBowl/Vault/releases/download/1.7.3/Vault.jar"
+purpose = "Permissions, chat, and economy service API bridging LuckPerms with EssentialsX & Multiverse"
+
+[[packages]]
+key = "essentialsx"
+category = "plugins"
+file_path = "plugins/EssentialsX-2.20.1.jar"
+name = "EssentialsX Core"
+version = "2.20.1"
+sha256 = "802ea30bda460ca4597e818925816933c123b08d8126a814fac28d03a61bf542"
+source_url = "https://cdn.modrinth.com/data/hXiIvTyT/versions/puUfqBpY/EssentialsX-2.20.1.jar"
+purpose = "Foundational server commands (/tpa, /home, /warp, /kit), economy, and moderation"
+sha1 = "e626f9f250470bcf2feffbc3740f738f9cee50ef"
+sha512 = "d6453063b8197b96c5f244f5b23bd97abf75c9bd60206e1f9e40ae4bb6e93d0141a3b253dce588a6335a43f8c2c37f02d14563587668edbff0d60daac80b42ca"
+file_size = 3070345
+
+[[packages]]
+key = "essentialsx-chat"
+category = "plugins"
+file_path = "plugins/EssentialsXChat-2.20.1.jar"
+name = "EssentialsX Chat"
+version = "2.20.1"
+sha256 = "40aa5c20241ceb3007ebcb5cfbf19bf2c467b0c090ae50e70653ee87ab775ca6"
+source_url = "https://cdn.modrinth.com/data/hXiIvTyT/versions/puUfqBpY/EssentialsXChat-2.20.1.jar"
+purpose = "Chat formatting addon rendering LuckPerms prefixes/suffixes, colors, and chat radius"
+sha1 = "cf5c055984b808512b2f5c23dd7c7de8806f072f"
+sha512 = "ca64e1c7833fc01a91241ad4bab8213252047469dd01d330606b2198d5d9a6a083cc2c00489c42c3e4ff14472ec9a45a5a8d9e84d7240e9eb18d3fe10af3e3c4"
+file_size = 17829
+
+[[packages]]
+key = "essentialsx-spawn"
+category = "plugins"
+file_path = "plugins/EssentialsXSpawn-2.20.1.jar"
+name = "EssentialsX Spawn"
+version = "2.20.1"
+sha256 = "650d7c6a33865a02c5ffa4eb710def28e73d972c9aef85b2b1f4e71b9bd261a0"
+source_url = "https://cdn.modrinth.com/data/hXiIvTyT/versions/puUfqBpY/EssentialsXSpawn-2.20.1.jar"
+purpose = "Controls initial join spawn, /setspawn, /spawn, and per-group respawn routing"
+sha1 = "68dfe0e04217ecf27bb255d4a6b993ddd6c7830d"
+sha512 = "ad12d4b00189a077da9b6b95d0e3f565cf9fba4e5404a2011beccb187816d749093d868b14134f8682082847273d732ae869852f28100b90a8cc21175afef674"
+file_size = 18122
+
+[[packages]]
+key = "essentialsx-protect"
+category = "plugins"
+file_path = "plugins/EssentialsXProtect-2.20.1.jar"
+name = "EssentialsX Protect"
+version = "2.20.1"
+sha256 = "3268fd1a29f452777c9200e87c9c9e8587dcaedcff78fdc82d93b6d82ce74128"
+source_url = "https://cdn.modrinth.com/data/hXiIvTyT/versions/puUfqBpY/EssentialsXProtect-2.20.1.jar"
+purpose = "Global world protection rules (creeper/TNT block damage, fire spread, weather locks)"
+sha1 = "186ba82dbde2829cca990ec2e7ce5d241633c30e"
+sha512 = "b2502f22ddc61eb34ece206b4e72900ef85559e8bc2f4a2effceb457d836989f3571e9c37577572337554e8b9046339bba2b9d10c3378829fbf70b09a7e35783"
+file_size = 25712
+
+[[packages]]
+key = "essentialsx-antibuild"
+category = "plugins"
+file_path = "plugins/EssentialsXAntiBuild-2.20.1.jar"
+name = "EssentialsX AntiBuild"
+version = "2.20.1"
+sha256 = "041d05db2a609aca056a26cf78db715aa02f1e23d1dbe0126eab9b409392c67c"
+source_url = "https://cdn.modrinth.com/data/hXiIvTyT/versions/puUfqBpY/EssentialsXAntiBuild-2.20.1.jar"
+purpose = "Fine-grained rank permission checks for placing, breaking, crafting, or dropping items"
+sha1 = "189d23f6aea5b3f2b255189c1af2bd8c0d53ae60"
+sha512 = "268fb0484721d9bf82790bcb82f58e1fb49795244636ed6e4e1643dfbe7ec78f85532999522cd5369607bef739644318580d96bbc3e321dfd0c8411a44086be0"
+file_size = 18325
+
+[[packages]]
+key = "multiverse-core"
+category = "plugins"
+file_path = "plugins/multiverse-core-5.8.1.jar"
+name = "Multiverse-Core"
+version = "5.8.1"
+sha256 = "bc3f34e2d747fdf024f44868747bb016b08fa11d98ccb4ffcac958f083151a83"
+source_url = "https://cdn.modrinth.com/data/3wmN97b8/versions/YZ2Ji4IS/multiverse-core-5.8.1.jar"
+purpose = "Multi-world engine hosting simultaneous worlds (Lobby, Survival, Creative) with custom rules"
+sha1 = "1cc4c6799acfbd07139667d3e6512ebcb31be10b"
+sha512 = "322c1f4dc1abcd30e0f55aa9f378c7031846d1e59a5156480f9199050dc104c19468c9891c47be35e4dde68742ec4420ea974ec8850db6a259f97ffa1b1c51ea"
+file_size = 4627993
+
+[[packages]]
+key = "multiverse-inventories"
+category = "plugins"
+file_path = "plugins/multiverse-inventories-5.3.6.jar"
+name = "Multiverse-Inventories"
+version = "5.3.6"
+sha256 = "6e58e89009283f4be8658abe2b7e46c482010ceccf3c8e0b0e8ca6a0a114ff92"
+source_url = "https://cdn.modrinth.com/data/qvdtDX3s/versions/86s1EwyC/multiverse-inventories-5.3.6.jar"
+purpose = "Isolates player inventories, XP, health, and Ender Chests between Survival & Creative worlds"
+sha1 = "8aebdc90d8e8970d163ea5030596bf5f6fa5c40b"
+sha512 = "e587c873e1a01a48d79dabadc629113d68fe11240b85c970f481b62ebfcf5f8c3adffa9c5a5c601db0437b5c873312a02492a191ac8504a66ce4fed48a0d7438"
+file_size = 1805118
+
+[[packages]]
+key = "multiverse-netherportals"
+category = "plugins"
+file_path = "plugins/multiverse-netherportals-5.1.0.jar"
+name = "Multiverse-NetherPortals"
+version = "5.1.0"
+sha256 = "a4b3750970b5b710aa942baaff07a8fcef56802cf286b9dcda7e69dd904492cc"
+source_url = "https://cdn.modrinth.com/data/vtawPsTo/versions/RRa80eDI/multiverse-netherportals-5.1.0.jar"
+purpose = "Links vanilla Nether/End portals to world-specific _nether and _the_end dimensions"
+sha1 = "b5e99316053c128f965627558396a4b444c41ea8"
+sha512 = "20a946c1b2a701fa7bb93318f68e698579985b587153824240c270e073a55012ea2ee37ce53306ca9bd38ba8dd96846d31b02946df1b973faa7d7f5004ab5238"
+file_size = 96162
+
+[[packages]]
+key = "multiverse-portals"
+category = "plugins"
+file_path = "plugins/multiverse-portals-5.3.0.jar"
+name = "Multiverse-Portals"
+version = "5.3.0"
+sha256 = "345f0f296bb54e1fd98494260f93fb1ab97ba92f8ad7f6bfba129ea90021ea8d"
+source_url = "https://cdn.modrinth.com/data/8VMk6P0I/versions/otf0vOqh/multiverse-portals-5.3.0.jar"
+purpose = "Custom stargates/hub portals selected with the FAWE/WorldEdit wand"
+sha1 = "bbe872bc0887ed16b6dc7e853299ca05bda4fe79"
+sha512 = "7314d9f7c14fa4706b1283c80a1b3baf2c113f299510d98033be201c07979b283c637d1cc29a2a3f026779b7e70cc7ca53c92649af215a0f887acd803991f8e3"
+file_size = 189730
+
+[[packages]]
+key = "multiverse-signportals"
+category = "plugins"
+file_path = "plugins/multiverse-signportals-5.0.4.jar"
+name = "Multiverse-SignPortals"
+version = "5.0.4"
+sha256 = "956eef8a1c80a203ebfded6862611def1838db5250cc670852c1a6d936312f93"
+source_url = "https://cdn.modrinth.com/data/WuErDeI1/versions/eL6NdmcK/multiverse-signportals-5.0.4.jar"
+purpose = "Clickable [mv] teleportation signs and sign-attached portal destinations"
+sha1 = "a5960ce2b2696557747a4d12504d2235def0e3f2"
+sha512 = "e2ec390ab4e370685b09094a685ec5531833c013fb8e8c906d01037a0b6b57ed3efb3a5364bf277510b555d339713e72da1fd17670f1145b24668fb31fe728e1"
+file_size = 42725
+
+[[packages]]
+key = "fastasyncworldedit"
+category = "plugins"
+file_path = "plugins/FastAsyncWorldEdit-Bukkit-2.11.0.jar"
+name = "FastAsyncWorldEdit (FAWE)"
+version = "2.11.0"
+sha256 = "5eedd196babb23adf46cbe288f9e8844a0d2295a87da4e7325c9f5664a98ace8"
+source_url = "https://cdn.modrinth.com/data/z4HZZnLr/versions/CyUQUWfI/FastAsyncWorldEdit-Bukkit-2.11.0.jar"
+purpose = "Blazingly fast async WorldEdit replacement (provides: [WorldEdit]) for WorldGuard & Portals"
+sha1 = "ddc18eef71f2870d09791753849b76fbfb977e11"
+sha512 = "5648810ed7e7c46b98d37f7fbf8aa0eae0bb6ffcc82d09b7215f2aa6378db7481fd8689ce119925161a6636cebe4d92aed345ab6d0108759c0fd88cb7f8fb70b"
+file_size = 15341807
+
+[[packages]]
+key = "worldguard"
+category = "plugins"
+file_path = "plugins/worldguard-bukkit-7.0.9-dist.jar"
+name = "WorldGuard"
+version = "7.0.9"
+sha256 = "0c04d30c0c98c21e820dec6f7e380993416a293d7e2646849f6dcd4efdc24287"
+source_url = "https://cdn.modrinth.com/data/DKY9btbd/versions/NpagB1YQ/worldguard-bukkit-7.0.9-dist.jar"
+purpose = "3D region protection & flags (Spawn Hub, PvP arenas, build permissions, mob-spawning)"
+sha1 = "42ea9130bd6df8f3157bbbe7949c9bdcff7c0dff"
+sha512 = "a16715f02d3e1a021c6263fc53cf6c5acee93c1509d42ace0b9681fb4b2010729547fa3da0e051be9a26332b6fcd8469a7fb64274a9c02e177356d4779c6ac62"
+file_size = 1167465
+
+[[packages]]
+key = "chunky"
+category = "plugins"
+file_path = "plugins/Chunky-1.3.146.jar"
+name = "Chunky"
+version = "1.3.146"
+sha256 = "5d9351d2564694b2a878995acc211f3fd30df8358e097eefa26ffe9135ddf6a7"
+source_url = "https://cdn.modrinth.com/data/fALzjamp/versions/y4mBluVX/Chunky-1.3.146.jar"
+purpose = "Asynchronous world chunk pre-generator (/chunky) eliminating exploration lag spikes"
+sha1 = "52a0b59ef563b7eaaa610be4884ff6780d7d4d04"
+sha512 = "18a0d3f8ad97da5da90f10422af4cfdd76c0053431367a30144395d73fd2ba0cb5ebafb6345bb5c9093f0ffe2d61b1c4d69b7813f722d2b2735c4bd62621a86b"
+file_size = 289159
+
+[[packages]]
+key = "prism-launcher"
+category = "client"
+file_path = "client/PrismLauncher-Windows-MSVC-Setup-11.1.1.exe"
+name = "Prism Launcher (Windows Installer)"
+version = "11.1.1"
+sha256 = "aaf1f371a41d530785b679e3a2e1141dceec98651fc35d56dc0842b2740280ae"
+source_url = "https://github.com/PrismLauncher/PrismLauncher/releases/download/11.1.1/PrismLauncher-Windows-MSVC-Setup-11.1.1.exe"
+purpose = "Open-source Minecraft launcher with native Modrinth (.mrpack) one-click import."
+
+[[packages]]
+key = "fabric-installer"
+category = "client"
+file_path = "client/fabric-installer-1.1.2.jar"
+name = "Fabric Loader Installer"
+version = "1.20.1-0.19.5"
+sha256 = "61e035bf7bf70153e127440ce34de47c9036f0a2d0c65d1529454bd35ceefe4f"
+source_url = "https://maven.fabricmc.net/net/fabricmc/fabric-installer/1.1.2/fabric-installer-1.1.2.jar"
+purpose = "Official Fabric client mod loader (0.19.5) for Minecraft 1.20.1."
+sha1 = "74685b5a0178c4dabd4be741a276d35c59b5ec96"
+sha512 = "3cbe7b69498c44d814fc95e71cd9ce9c12c45a9e1dcf01085cb3e9aaf6fe63134b701065167be1fa6e4c2df19dfa5400bc5b6b1b7fb5e99e334d24dcdca55c20"
+file_size = 212123
+
+[[packages]]
+key = "fabric-api"
+category = "client"
+file_path = "client/fabric-api-0.92.12+1.20.1.jar"
+name = "Fabric API"
+version = "0.92.12+1.20.1"
+sha256 = "4197ff4fbdac13cffccd267c1bc59e9fbabb2b5683a9d5f8023f4b5ea16a1c1e"
+source_url = "https://cdn.modrinth.com/data/P7dR8mSH/versions/rvI2dfzR/fabric-api-0.92.12%2B1.20.1.jar"
+purpose = "Essential standard library required by almost all Fabric client mods"
+sha1 = "3e9cdd3e2f827ca9a259df9eb8e31949437b6bd4"
+sha512 = "de9da2344043b3e9ef9fb7dbfff5f2577b06000c4f73f2a37959a80123141169084cece19133bd299b45feaaa4648bdaca2ea085684888cc8c55cc9134a477ca"
+file_size = 2137232
+
+[[packages]]
+key = "sodium"
+category = "client"
+file_path = "client/sodium-fabric-0.5.13+mc1.20.1.jar"
+name = "Sodium"
+version = "mc1.20.1-0.5.13-fabric"
+sha256 = "688c26029ce69f0b1f7cf936866656ca6723228ac46c4aef5b5f793b1e6abd22"
+source_url = "https://cdn.modrinth.com/data/AANobbMI/versions/OihdIimA/sodium-fabric-0.5.13%2Bmc1.20.1.jar"
+purpose = "Modern open-source rendering engine that dramatically boosts FPS and fixes frame stutter"
+sha1 = "bcdbf37d9494e405cba210d7a80ed58e756297b5"
+sha512 = "81c64f9c2d3402dfa43ee54d8f5a054f5243bfb08984e3addcab9fe885073c79c43c1c8c41e8f30b625d26a656f82a8e5f370bbbbf222ff1c08f4b324edb7ea4"
+file_size = 971552
+
+[[packages]]
+key = "iris"
+category = "client"
+file_path = "client/iris-1.7.6+mc1.20.1.jar"
+name = "Iris Shaders"
+version = "1.7.6+1.20.1"
+sha256 = "9eb15e563e0c9ae6eff15b7863f8432dd290cf9f724c7373e9b15b14aa829ed5"
+source_url = "https://cdn.modrinth.com/data/YL57xq9U/versions/s5eFLITc/iris-1.7.6%2Bmc1.20.1.jar"
+purpose = "Modern shader pack loader paired with Sodium (replaces OptiFine shaders)"
+sha1 = "880c0b9ce38bb4997645793407c1801df83f4233"
+sha512 = "f1337b0441c31269bd3bfcb28647d521326a83e73128c1ac8d065615f8a5a4ca1e8c96a468b356584236ece5b164ec8d8a52b1878064f4e391ecf4f32885e301"
+file_size = 2726899
+
+[[packages]]
+key = "journeymap"
+category = "client"
+file_path = "client/journeymap-fabric-1.20.1-6.0.7.jar"
+name = "JourneyMap"
+version = "1.20.1-6.0.7+fabric"
+sha256 = "9fc3bc29aaa53a364f212d0277ff334f779fe0ae004cf967b1b4489c13ee7712"
+source_url = "https://cdn.modrinth.com/data/lfHFW1mp/versions/Dk3AKHGe/journeymap-fabric-1.20.1-6.0.7.jar"
+purpose = "Real-time HUD minimap, fullscreen world map, cave mapping, and death/waypoint markers"
+sha1 = "3a7090b1d05aa585933707701427de00157066c6"
+sha512 = "9a6b9bbdf1d0e7532ede179cb47ca07626d9df3a27d3bb4472b77dfa2ef010ccd2bea40a3f47f048ffe095d103a42dd492b1cc43c0f06349c0e67933b866692e"
+file_size = 4360409
+
+[[packages]]
+key = "ferrite-core"
+category = "client"
+file_path = "client/ferritecore-6.0.1-fabric.jar"
+name = "FerriteCore"
+version = "6.0.1"
+sha256 = "c7ba1118a05b2da900d1c369fbe1017a3e3ec3cafe5e51398b851279b9becf24"
+source_url = "https://cdn.modrinth.com/data/uXXizFIs/versions/unerR5MN/ferritecore-6.0.1-fabric.jar"
+purpose = "Reduces Minecraft client memory (RAM) usage by ~45% via blockstate deduplication"
+sha1 = "8fa3b84fc5860dbc30fdf8cced02af68dffcf3fa"
+sha512 = "9b7dc686bfa7937815d88c7bbc6908857cd6646b05e7a96ddbdcada328a385bd4ba056532cd1d7df9d2d7f4265fd48bd49ff683f217f6d4e817177b87f6bc457"
+file_size = 125197
+
+[[packages]]
+key = "entityculling"
+category = "client"
+file_path = "client/entityculling-fabric-1.11.3-mc1.20.1.jar"
+name = "EntityCulling"
+version = "1.11.3"
+sha256 = "8944942832e93d717bac4639c27dbc7fb883453002982304393edad3b38cd171"
+source_url = "https://cdn.modrinth.com/data/NNAgCjsB/versions/xSrd3qsM/entityculling-fabric-1.11.3-mc1.20.1.jar"
+purpose = "Skips rendering block entities and mobs hidden behind walls using async raytracing"
+sha1 = "42d17e5455f5015fa9b9c918a9b599683ff83f1c"
+sha512 = "6bb4af050ec3bb5f4e2f76b33abc2bb6e0096c94849ba728979200beddeed8b2c3a5a962ecbec9cf79f11a99ba996a847814f1aabdb8ffad54105800fc0fed72"
+file_size = 1516696
+
+[[packages]]
+key = "modmenu"
+category = "client"
+file_path = "client/modmenu-7.2.2.jar"
+name = "Mod Menu"
+version = "7.2.2"
+sha256 = "a041b0f0305ffa5eb90120aa23768e1cfbb27583904b1751e3783c0f69382f1a"
+source_url = "https://cdn.modrinth.com/data/mOgUt4GM/versions/lEkperf6/modmenu-7.2.2.jar"
+purpose = "In-game screen for viewing installed Fabric mods and configuring mod settings"
+sha1 = "099c68feeb74887cbbbd8ce9a27c6123804a2c5a"
+sha512 = "9a7837e04bb34376611b207a3b20e5fe1c82a4822b42929d5b410809ec4b88ff3cac8821c4568f880775bafa3c079dfc7800f8471356a4046248b12607e855eb"
+file_size = 721366

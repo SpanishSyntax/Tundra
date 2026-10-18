@@ -3,56 +3,116 @@
   "game": "minecraft",
   "versionId": "2.0.0",
   "name": "Tundra Client (1.20.1)",
-  "summary": "Modernized Forge 1.20.1 client stack for Tundra (Embeddium + Oculus + JourneyMap)",
+  "summary": "Modernized Fabric 1.20.1 client stack for Tundra (Fabric API, Sodium, Iris Shaders, JourneyMap)",
   "dependencies": {
     "minecraft": "1.20.1",
-    "forge": "47.4.10"
+    "fabric-loader": "0.19.5"
   },
   "files": [
     {
-      "path": "mods/embeddium-0.3.31+mc1.20.1.jar",
+      "path": "mods/fabric-api-0.92.12+1.20.1.jar",
       "hashes": {
-        "sha1": "bb2fa8f3e493af16af9160d049f96c614a1faf2f",
-        "sha512": "ffbf2da4685260a4d5c14c621708bd20722563f084f042d3dfb0a7b87f048e39299648c854a93939129da0d23a15a91ec628560d601e76074b08e275f6e132e9"
+        "sha1": "3e9cdd3e2f827ca9a259df9eb8e31949437b6bd4",
+        "sha512": "de9da2344043b3e9ef9fb7dbfff5f2577b06000c4f73f2a37959a80123141169084cece19133bd299b45feaaa4648bdaca2ea085684888cc8c55cc9134a477ca"
       },
       "env": {
         "client": "required",
         "server": "unsupported"
       },
       "downloads": [
-        "https://cdn.modrinth.com/data/sk9rgfiA/versions/UTbfe5d1/embeddium-0.3.31%2Bmc1.20.1.jar"
+        "https://cdn.modrinth.com/data/P7dR8mSH/versions/rvI2dfzR/fabric-api-0.92.12%2B1.20.1.jar"
       ],
-      "fileSize": 1320675
+      "fileSize": 2137232
     },
     {
-      "path": "mods/oculus-mc1.20.1-1.8.0.jar",
+      "path": "mods/sodium-fabric-0.5.13+mc1.20.1.jar",
       "hashes": {
-        "sha1": "984f774e71790deaec674c7587bd24e0711871b2",
-        "sha512": "1bb4ac77400d6684347988ed298a692c2cb15cf7923693607eb8739b171a20fef7412259e9e157111d9ce21779badab386029956f7d2283a9e611722a373e9d5"
+        "sha1": "bcdbf37d9494e405cba210d7a80ed58e756297b5",
+        "sha512": "81c64f9c2d3402dfa43ee54d8f5a054f5243bfb08984e3addcab9fe885073c79c43c1c8c41e8f30b625d26a656f82a8e5f370bbbbf222ff1c08f4b324edb7ea4"
       },
       "env": {
         "client": "required",
         "server": "unsupported"
       },
       "downloads": [
-        "https://cdn.modrinth.com/data/GchcoXML/versions/iQ1SwGc3/oculus-mc1.20.1-1.8.0.jar"
+        "https://cdn.modrinth.com/data/AANobbMI/versions/OihdIimA/sodium-fabric-0.5.13%2Bmc1.20.1.jar"
       ],
-      "fileSize": 2851119
+      "fileSize": 971552
     },
     {
-      "path": "mods/journeymap-forge-1.20.1-6.0.7.jar",
+      "path": "mods/iris-1.7.6+mc1.20.1.jar",
       "hashes": {
-        "sha1": "fb9411d6d516f604a8fa63ba505205d813d7caa1",
-        "sha512": "93f8514bb8bb24f31b67991940a2075ef9889e3eff2e57a6c1bc98828e3315c37d96c025e73318a2209602bfea71a0b3d2fd415bb347076b0c8a1daafae11746"
+        "sha1": "880c0b9ce38bb4997645793407c1801df83f4233",
+        "sha512": "f1337b0441c31269bd3bfcb28647d521326a83e73128c1ac8d065615f8a5a4ca1e8c96a468b356584236ece5b164ec8d8a52b1878064f4e391ecf4f32885e301"
+      },
+      "env": {
+        "client": "required",
+        "server": "unsupported"
+      },
+      "downloads": [
+        "https://cdn.modrinth.com/data/YL57xq9U/versions/s5eFLITc/iris-1.7.6%2Bmc1.20.1.jar"
+      ],
+      "fileSize": 2726899
+    },
+    {
+      "path": "mods/journeymap-fabric-1.20.1-6.0.7.jar",
+      "hashes": {
+        "sha1": "3a7090b1d05aa585933707701427de00157066c6",
+        "sha512": "9a6b9bbdf1d0e7532ede179cb47ca07626d9df3a27d3bb4472b77dfa2ef010ccd2bea40a3f47f048ffe095d103a42dd492b1cc43c0f06349c0e67933b866692e"
       },
       "env": {
         "client": "required",
         "server": "optional"
       },
       "downloads": [
-        "https://cdn.modrinth.com/data/lfHFW1mp/versions/HWDC99DO/journeymap-forge-1.20.1-6.0.7.jar"
+        "https://cdn.modrinth.com/data/lfHFW1mp/versions/Dk3AKHGe/journeymap-fabric-1.20.1-6.0.7.jar"
       ],
-      "fileSize": 4353808
+      "fileSize": 4360409
+    },
+    {
+      "path": "mods/ferritecore-6.0.1-fabric.jar",
+      "hashes": {
+        "sha1": "8fa3b84fc5860dbc30fdf8cced02af68dffcf3fa",
+        "sha512": "9b7dc686bfa7937815d88c7bbc6908857cd6646b05e7a96ddbdcada328a385bd4ba056532cd1d7df9d2d7f4265fd48bd49ff683f217f6d4e817177b87f6bc457"
+      },
+      "env": {
+        "client": "required",
+        "server": "unsupported"
+      },
+      "downloads": [
+        "https://cdn.modrinth.com/data/uXXizFIs/versions/unerR5MN/ferritecore-6.0.1-fabric.jar"
+      ],
+      "fileSize": 125197
+    },
+    {
+      "path": "mods/entityculling-fabric-1.11.3-mc1.20.1.jar",
+      "hashes": {
+        "sha1": "42d17e5455f5015fa9b9c918a9b599683ff83f1c",
+        "sha512": "6bb4af050ec3bb5f4e2f76b33abc2bb6e0096c94849ba728979200beddeed8b2c3a5a962ecbec9cf79f11a99ba996a847814f1aabdb8ffad54105800fc0fed72"
+      },
+      "env": {
+        "client": "required",
+        "server": "unsupported"
+      },
+      "downloads": [
+        "https://cdn.modrinth.com/data/NNAgCjsB/versions/xSrd3qsM/entityculling-fabric-1.11.3-mc1.20.1.jar"
+      ],
+      "fileSize": 1516696
+    },
+    {
+      "path": "mods/modmenu-7.2.2.jar",
+      "hashes": {
+        "sha1": "099c68feeb74887cbbbd8ce9a27c6123804a2c5a",
+        "sha512": "9a7837e04bb34376611b207a3b20e5fe1c82a4822b42929d5b410809ec4b88ff3cac8821c4568f880775bafa3c079dfc7800f8471356a4046248b12607e855eb"
+      },
+      "env": {
+        "client": "required",
+        "server": "unsupported"
+      },
+      "downloads": [
+        "https://cdn.modrinth.com/data/mOgUt4GM/versions/lEkperf6/modmenu-7.2.2.jar"
+      ],
+      "fileSize": 721366
     }
   ]
 }
