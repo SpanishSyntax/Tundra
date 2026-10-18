@@ -2,117 +2,117 @@
   "formatVersion": 1,
   "game": "minecraft",
   "versionId": "2.0.0",
-  "name": "Tundra Client (1.20.1)",
-  "summary": "Modernized Fabric 1.20.1 client stack for Tundra (Fabric API, Sodium, Iris Shaders, JourneyMap)",
+  "name": "Tundra Client (26.3)",
+  "summary": "Modernized Fabric 26.3 client stack for Tundra (Fabric API, Sodium, Iris Shaders, JourneyMap)",
   "dependencies": {
-    "minecraft": "1.20.1",
+    "minecraft": "26.3",
     "fabric-loader": "0.19.5"
   },
   "files": [
     {
-      "path": "mods/fabric-api-0.92.12+1.20.1.jar",
+      "path": "mods/fabric-api-0.163.0+26.3.jar",
       "hashes": {
-        "sha1": "3e9cdd3e2f827ca9a259df9eb8e31949437b6bd4",
-        "sha512": "de9da2344043b3e9ef9fb7dbfff5f2577b06000c4f73f2a37959a80123141169084cece19133bd299b45feaaa4648bdaca2ea085684888cc8c55cc9134a477ca"
+        "sha1": "65ada8c72b61ffb256e956baf53df28155daa479",
+        "sha512": "44fd8de10fa71ea39cf984d44d2ec4c8e9314f8af88ad95788d9a09ac7b02b5c2f796ae88f40e314bd27df677e66fed59d1a1b6784350b0cc1fd62efac9e08a3"
       },
       "env": {
         "client": "required",
         "server": "unsupported"
       },
       "downloads": [
-        "https://cdn.modrinth.com/data/P7dR8mSH/versions/rvI2dfzR/fabric-api-0.92.12%2B1.20.1.jar"
+        "https://cdn.modrinth.com/data/P7dR8mSH/versions/bq3SsNGk/fabric-api-0.163.0%2B26.3.jar"
       ],
-      "fileSize": 2137232
+      "fileSize": 1774707
     },
     {
-      "path": "mods/sodium-fabric-0.5.13+mc1.20.1.jar",
+      "path": "mods/sodium-fabric-0.9.2+mc26.3.jar",
       "hashes": {
-        "sha1": "bcdbf37d9494e405cba210d7a80ed58e756297b5",
-        "sha512": "81c64f9c2d3402dfa43ee54d8f5a054f5243bfb08984e3addcab9fe885073c79c43c1c8c41e8f30b625d26a656f82a8e5f370bbbbf222ff1c08f4b324edb7ea4"
+        "sha1": "9acfe851e36f4fb27d7c5baa224e8bd4e0334283",
+        "sha512": "f3f260f204b8ce5e8777c2c73f537956755ec61f3817b0b78b5e5568e8aa40f14891f146475075109747665c7c88a45ca0ca9a8df3c68d79c58ecdaa8d8c4b93"
       },
       "env": {
         "client": "required",
         "server": "unsupported"
       },
       "downloads": [
-        "https://cdn.modrinth.com/data/AANobbMI/versions/OihdIimA/sodium-fabric-0.5.13%2Bmc1.20.1.jar"
+        "https://cdn.modrinth.com/data/AANobbMI/versions/bAZQdGpg/sodium-fabric-0.9.2%2Bmc26.3.jar"
       ],
-      "fileSize": 971552
+      "fileSize": 1908068
     },
     {
-      "path": "mods/iris-1.7.6+mc1.20.1.jar",
+      "path": "mods/iris-fabric-1.11.7+mc26.3.jar",
       "hashes": {
-        "sha1": "880c0b9ce38bb4997645793407c1801df83f4233",
-        "sha512": "f1337b0441c31269bd3bfcb28647d521326a83e73128c1ac8d065615f8a5a4ca1e8c96a468b356584236ece5b164ec8d8a52b1878064f4e391ecf4f32885e301"
+        "sha1": "fa03640ba1e4ef2f7ae3619c6373a06e46d0ba2c",
+        "sha512": "d8d3312f77fc52a48e4a6cd836fda33669bdebcb4de0b8c0d30adc808b287330a533e0baef355cc1ce6336a26851d9775369a802a4666b7b7a6266af20088f42"
       },
       "env": {
         "client": "required",
         "server": "unsupported"
       },
       "downloads": [
-        "https://cdn.modrinth.com/data/YL57xq9U/versions/s5eFLITc/iris-1.7.6%2Bmc1.20.1.jar"
+        "https://cdn.modrinth.com/data/YL57xq9U/versions/vTN4NRGW/iris-fabric-1.11.7%2Bmc26.3.jar"
       ],
-      "fileSize": 2726899
+      "fileSize": 2850938
     },
     {
-      "path": "mods/journeymap-fabric-1.20.1-6.0.7.jar",
+      "path": "mods/journeymap-fabric-26.3-6.0.10.jar",
       "hashes": {
-        "sha1": "3a7090b1d05aa585933707701427de00157066c6",
-        "sha512": "9a6b9bbdf1d0e7532ede179cb47ca07626d9df3a27d3bb4472b77dfa2ef010ccd2bea40a3f47f048ffe095d103a42dd492b1cc43c0f06349c0e67933b866692e"
+        "sha1": "8fb9d3039e0acca2e1d5f5ced71ab5aaac22fdf8",
+        "sha512": "d461b24b3eeaf74ecc75911542cfbfeefe7148a2a260453f15af047d1a895f6484b8e21816de990dc25987d747cc1cccdd5386e8c51a5dcc72a1356b39139bf2"
       },
       "env": {
         "client": "required",
         "server": "optional"
       },
       "downloads": [
-        "https://cdn.modrinth.com/data/lfHFW1mp/versions/Dk3AKHGe/journeymap-fabric-1.20.1-6.0.7.jar"
+        "https://cdn.modrinth.com/data/lfHFW1mp/versions/2zmj8ela/journeymap-fabric-26.3-6.0.10.jar"
       ],
-      "fileSize": 4360409
+      "fileSize": 4384661
     },
     {
-      "path": "mods/ferritecore-6.0.1-fabric.jar",
+      "path": "mods/ferritecore-9.0.0-fabric.jar",
       "hashes": {
-        "sha1": "8fa3b84fc5860dbc30fdf8cced02af68dffcf3fa",
-        "sha512": "9b7dc686bfa7937815d88c7bbc6908857cd6646b05e7a96ddbdcada328a385bd4ba056532cd1d7df9d2d7f4265fd48bd49ff683f217f6d4e817177b87f6bc457"
+        "sha1": "eac76ff0f3753422c61b2c44487d0d195d88d4bc",
+        "sha512": "d81fa97e11784c19d42f89c2f433831d007603dd7193cee45fa177e4a6a9c52b384b198586e04a0f7f63cd996fed713322578bde9a8db57e1188854ae5cbe584"
       },
       "env": {
         "client": "required",
         "server": "unsupported"
       },
       "downloads": [
-        "https://cdn.modrinth.com/data/uXXizFIs/versions/unerR5MN/ferritecore-6.0.1-fabric.jar"
+        "https://cdn.modrinth.com/data/uXXizFIs/versions/d5ddUdiB/ferritecore-9.0.0-fabric.jar"
       ],
-      "fileSize": 125197
+      "fileSize": 72677
     },
     {
-      "path": "mods/entityculling-fabric-1.11.3-mc1.20.1.jar",
+      "path": "mods/entityculling-fabric-1.11.3-mc26.3.jar",
       "hashes": {
-        "sha1": "42d17e5455f5015fa9b9c918a9b599683ff83f1c",
-        "sha512": "6bb4af050ec3bb5f4e2f76b33abc2bb6e0096c94849ba728979200beddeed8b2c3a5a962ecbec9cf79f11a99ba996a847814f1aabdb8ffad54105800fc0fed72"
+        "sha1": "45f47f7a067f5efd733a32767dc3d1d770678b2a",
+        "sha512": "b6209bb62d72376d3fd284da137ec93a6dd38ebe5fd38ab9190deeade68b5b7f4bf915f4abcb4a807afe18cb9f0b59e11be789d46df6f0e6f64388ed2edc284d"
       },
       "env": {
         "client": "required",
         "server": "unsupported"
       },
       "downloads": [
-        "https://cdn.modrinth.com/data/NNAgCjsB/versions/xSrd3qsM/entityculling-fabric-1.11.3-mc1.20.1.jar"
+        "https://cdn.modrinth.com/data/NNAgCjsB/versions/X1g3VhTx/entityculling-fabric-1.11.3-mc26.3.jar"
       ],
-      "fileSize": 1516696
+      "fileSize": 1508547
     },
     {
-      "path": "mods/modmenu-7.2.2.jar",
+      "path": "mods/modmenu-21.0.0.jar",
       "hashes": {
-        "sha1": "099c68feeb74887cbbbd8ce9a27c6123804a2c5a",
-        "sha512": "9a7837e04bb34376611b207a3b20e5fe1c82a4822b42929d5b410809ec4b88ff3cac8821c4568f880775bafa3c079dfc7800f8471356a4046248b12607e855eb"
+        "sha1": "66ec40f1cd0c037ddca2b5fc6b4b976d479c18e8",
+        "sha512": "588c0c557963f4778572ee81bfafc190b332c26d5926c5fe7e3e1614dcf8e14f58e3bc80a97694521dd05907e9753a7c8575048ea769e4dbf40a3db74a4e2606"
       },
       "env": {
         "client": "required",
         "server": "unsupported"
       },
       "downloads": [
-        "https://cdn.modrinth.com/data/mOgUt4GM/versions/lEkperf6/modmenu-7.2.2.jar"
+        "https://cdn.modrinth.com/data/mOgUt4GM/versions/kyy7dbrZ/modmenu-21.0.0.jar"
       ],
-      "fileSize": 721366
+      "fileSize": 856779
     }
   ]
 }
