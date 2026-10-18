@@ -12,9 +12,9 @@ Tundra splits server administration and player onboarding into two focused inter
 
 | CLI Command | Badge | Who It's For | What It Does |
 | :--- | :--- | :--- | :--- |
-| **`tundra-server`**<br/>*(or `tundra server`)* | `🏔️ [tundra-server]` | **Server Admins** | Interactive configurator to pick the Minecraft version, server backend (**PaperMC**, **PurpurMC**, **Folia**, **Fabric**, or **Plugins-Only / Managed Host mode** for Aternos), toggle plugins, lock SHA256 hashes in [`tundra.toml`](./tundra.toml), and export `plugins/*.jar` or a panel-ready `.zip`. |
-| **`tundra-client`**<br/>*(or `tundra client`)* | `🧊 [tundra-client]` | **Players Joining the Server** | Interactive menu to pick a client mod loader (**Fabric** recommended with **Sodium + Iris + FerriteCore**, or **Forge** with **Embeddium + Oculus**), toggle recommended client mods, and either generate a one-click **Prism Launcher `.mrpack`** or install `.jar` files directly into `.minecraft/mods`. |
-| **`tundra`** | `🏔️ [tundra]` | **Unified CLI** | Top-level dashboard, upstream compatibility auditor (`tundra resolve`), offline `.jar` manifest inspector (`tundra inspect-deps`), and release archive builder (`tundra bundle`). |
+| **`tundra-server`**<br/>*(or `tundra server`)* | `🏔️ [tundra-server]` | **Server Admins** | Interactive configurator to pick the Minecraft version, server backend (**PaperMC**, **PurpurMC**, **Folia**, **Fabric**, or **Plugins-Only / Managed Host mode** for Aternos), toggle plugins, lock SHA256 hashes in [`tundra.toml`](./tundra.toml), and export `tundra-server-mc<ver>.tar.gz` or a panel-ready `plugins/*.jar` `.zip`. |
+| **`tundra-client`**<br/>*(or `tundra client`)* | `🧊 [tundra-client]` | **Players Joining the Server** | Interactive menu to pick a client mod loader (**Fabric** recommended with **Sodium + Iris + FerriteCore**, or **Forge** with **Embeddium + Oculus**), toggle recommended client mods, and generate a one-click **Prism Launcher `.mrpack`**, `tundra-client-mc<ver>.tar.gz`, or install `.jar` files directly into `.minecraft/mods`. |
+| **`tundra`** | `🏔️ [tundra]` | **Unified CLI** | Top-level dashboard, upstream compatibility auditor (`tundra resolve`), offline `.jar` manifest inspector (`tundra inspect-deps`), and separated server/client release archive builder (`tundra bundle`). |
 
 ---
 
@@ -74,14 +74,19 @@ tundra-client
 # 3. Download & SHA256-verify all locked packages in tundra.toml and build Tundra-Client.mrpack
 tundra sync
 
-# 4. Export a clean plugins .zip for drag-and-drop upload to Aternos / Pterodactyl panels
+# 4. Build separated server & client release tarballs (or build just one side)
+tundra bundle                  # -> tundra-server-mc<ver>.tar.gz + tundra-client-mc<ver>.tar.gz
+tundra-server bundle           # -> tundra-server-mc<ver>.tar.gz (server + plugins only)
+tundra-client bundle           # -> tundra-client-mc<ver>.tar.gz (client mods + .mrpack only)
+
+# 5. Export a clean plugins .zip for drag-and-drop upload to Aternos / Pterodactyl panels
 tundra-server export-zip
 
-# 5. Switch client stack between Fabric (Sodium + Iris) and Forge (Embeddium + Oculus)
+# 6. Switch client stack between Fabric (Sodium + Iris) and Forge (Embeddium + Oculus)
 tundra-client sync --loader fabric
 tundra-client sync --loader forge
 
-# 6. Install client mod .jars directly into a standard ~/.minecraft/mods directory
+# 7. Install client mod .jars directly into a standard ~/.minecraft/mods directory
 tundra-client sync --mods-dir ~/.minecraft/mods
 ```
 

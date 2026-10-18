@@ -55,6 +55,7 @@ def print_server_help():
   verify                       Verify SHA256 checksums of local server/ and plugins/ binaries
   list                         List declared server runtime and plugin packages with install status
   export-zip                   Bundle plugins/*.jar into a .zip ready for managed panels (Aternos, Pterodactyl)
+  bundle                       Build tundra-server-mc<ver>.tar.gz (server + plugins + SHA256SUMS)
 
 {ui.blue("Options:")}
   -c, --config PATH            Path to tundra.toml manifest (default: ./tundra.toml)
@@ -72,6 +73,7 @@ def print_server_help():
   {app} sync                   # Download and verify server/*.jar and plugins/*.jar
   {app} resolve --mc 1.21.4    # Preview upgrading the server stack to Minecraft 1.21.4
   {app} export-zip             # Create a clean plugins .zip for drag-and-drop server hosting panels
+  {app} bundle                 # Create standalone tundra-server-mc<ver>.tar.gz archive
 """)
 
 
@@ -91,6 +93,7 @@ def print_client_help():
   inspect-deps                 Inspect embedded fabric.mod.json / mods.toml inside downloaded client .jars
   verify                       Verify SHA256 checksums of local client/ binaries
   list                         List declared client mods and tools with verification status
+  bundle                       Build tundra-client-mc<ver>.tar.gz (client mods + .mrpack + SHA256SUMS)
 
 {ui.blue("Options:")}
   -c, --config PATH            Path to tundra.toml manifest (default: ./tundra.toml)
@@ -108,6 +111,7 @@ def print_client_help():
   {app} mrpack                 # Build client/Tundra-Client-<mc>.mrpack for Prism Launcher
   {app} sync                   # Download all verified client mods into ./client/
   {app} sync --mods-dir ~/.minecraft/mods  # Install selected mods directly into vanilla launcher folder
+  {app} bundle                 # Create standalone tundra-client-mc<mc>.tar.gz archive
 """)
 
 
@@ -134,13 +138,13 @@ def print_unified_help():
   verify                       Verify SHA256 checksums of all local files without downloading
   list                         List all declared packages, versions, install status, and purpose
   mrpack                       Build client/Tundra-Client-<mc>.mrpack from tundra.toml
-  bundle                       Create tundra-mc<ver>-binaries.tar.gz + SHA256SUMS for GitHub Releases
+  bundle                       Create separated tundra-server-mc<ver>.tar.gz & tundra-client-mc<ver>.tar.gz + SHA256SUMS
 
 {ui.blue("Options:")}
   -c, --config PATH            Path to tundra.toml manifest (default: ./tundra.toml)
   --mc VERSION                 Target Minecraft version for 'resolve' (e.g. --mc 1.21.4)
-  --server / --plugins         Filter operation to server runtime or server plugins only
-  --client                     Filter operation to client mods/tools only
+  --server / --plugins         Filter operation (or bundle) to server runtime & plugins only
+  --client                     Filter operation (or bundle) to client mods & .mrpack only
   -f, --force                  Re-download files even if SHA256 checksum matches
   --from-release               Prefer fetching packages from the Tundra GitHub Release mirror
   --color MODE                 Color output mode: auto, always, never (default: auto)
@@ -235,6 +239,11 @@ def run_server_wizard(cfg: TundraConfig, manifest_path: Path) -> int:
                 "Export Plugins .zip for Managed Hosting Panels",
                 "Bundle ./plugins/*.jar for drag-and-drop upload (Aternos / Exaroton / Pterodactyl)",
             ),
+            (
+                "bundle",
+                f"Build Server Release Bundle (tundra-server-mc{cfg.mc_version}.tar.gz)",
+                "Package verified server/ + plugins/ + scoped SHA256SUMS into a standalone archive",
+            ),
             ("list", "List Declared Server Packages", "View versions, hashes, and install status"),
             ("exit", "Exit", "Quit without changes"),
         ],
@@ -253,6 +262,8 @@ def run_server_wizard(cfg: TundraConfig, manifest_path: Path) -> int:
         if rc == 0:
             export_plugins_zip(cfg, root_dir)
         return rc
+    if action == "bundle":
+        return create_release_bundle(cfg, root_dir, scope="server")
     if action == "list":
         return sync_packages(cfg, root_dir, mode="list", filter_cat="server-all")
     if action == "upgrade-preview":
@@ -382,6 +393,11 @@ def run_client_wizard(cfg: TundraConfig, manifest_path: Path) -> int:
                 "Inspect Local Client Mod .jar Manifests",
                 "Check embedded fabric.mod.json / META-INF/mods.toml offline",
             ),
+            (
+                "bundle",
+                f"Build Client Release Bundle (tundra-client-mc{cfg.mc_version}.tar.gz)",
+                "Package verified client/ mods + .mrpack + scoped SHA256SUMS into a standalone archive",
+            ),
             ("list", "List Declared Client Packages", "View versions, hashes, and status"),
             ("exit", "Exit", "Quit without changes"),
         ],
@@ -395,6 +411,8 @@ def run_client_wizard(cfg: TundraConfig, manifest_path: Path) -> int:
         return run_upstream_audit(cfg, target_mc=cfg.mc_version, filter_cat="client")
     if action == "inspect-deps":
         return run_offline_jar_inspector(cfg, root_dir, filter_cat="client")
+    if action == "bundle":
+        return create_release_bundle(cfg, root_dir, scope="client")
     if action == "list":
         return sync_packages(cfg, root_dir, mode="list", filter_cat="client")
     if action == "direct-mods":
@@ -621,6 +639,8 @@ def main_server(argv: list[str] | None = None) -> int:
         if rc == 0:
             export_plugins_zip(cfg, root_dir)
         return rc
+    if cmd == "bundle":
+        return create_release_bundle(cfg, root_dir, scope="server")
 
     ui.error(f"Unknown server command '{cmd}'. Run `tundra-server --help` for usage.")
     return 1
@@ -676,6 +696,8 @@ def main_client(argv: list[str] | None = None) -> int:
     if cmd == "mrpack":
         build_mrpack(cfg, root_dir)
         return 0
+    if cmd == "bundle":
+        return create_release_bundle(cfg, root_dir, scope="client")
     if cmd == "verify":
         return sync_packages(cfg, root_dir, mode="verify", filter_cat="client")
     if cmd in ("list", "ls"):
@@ -736,6 +758,11 @@ def main() -> int:
                         "Download & SHA256-verify server, plugins, client mods, and build .mrpack",
                     ),
                     (
+                        "bundle",
+                        "Build Separated Server & Client Release Bundles (.tar.gz)",
+                        f"Create tundra-server-mc{cfg.mc_version}.tar.gz & tundra-client-mc{cfg.mc_version}.tar.gz",
+                    ),
+                    (
                         "resolve",
                         f"Resolve Upstream Compatibility & Dependency Graph (MC {cfg.mc_version})",
                         "Query Modrinth, PaperMC, and Fabric/Forge APIs",
@@ -793,7 +820,7 @@ def main() -> int:
         build_mrpack(cfg, root_dir)
         return 0
     if cmd == "bundle":
-        return create_release_bundle(cfg, root_dir)
+        return create_release_bundle(cfg, root_dir, scope=opts["filter"])
 
     ui.error(f"Unknown command '{cmd}'. Run `tundra --help` for usage.")
     return 1

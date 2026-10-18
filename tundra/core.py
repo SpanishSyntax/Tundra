@@ -1301,39 +1301,105 @@ def sync_packages(
     return 0
 
 
-def create_release_bundle(cfg: TundraConfig, root_dir: Path) -> int:
-    """
-    Verifies all declared binaries, builds the `.mrpack`, and creates
-    `tundra-mc<ver>-binaries.tar.gz` + `SHA256SUMS` (or a server plugins `.zip` for managed hosts).
-    """
-    rc = sync_packages(cfg, root_dir, mode="verify", filter_cat="all")
-    if rc != 0:
-        ui.error("Cannot create release bundle while packages are missing or unverified.")
-        return rc
-
-    mrpack_path = build_mrpack(cfg, root_dir)
-    bundle_name = f"tundra-mc{cfg.mc_version}-binaries.tar.gz"
-    sums_path = root_dir / "SHA256SUMS"
-    bundle_path = root_dir / bundle_name
-
-    rel_files: list[str] = [p.file_path for p in cfg.packages if (root_dir / p.file_path).is_file()]
-    if mrpack_path and mrpack_path.is_file():
-        rel_files.append(f"client/{mrpack_path.name}")
+def _write_tar_with_sums(
+    bundle_path: Path, root_dir: Path, rel_files: list[str]
+) -> list[str]:
+    """Creates a `.tar.gz` archive containing only `rel_files` and a scoped `SHA256SUMS`."""
+    import io
 
     sums_lines: list[str] = []
     for rf in rel_files:
         sha = compute_sha256(root_dir / rf)
         sums_lines.append(f"{sha}  {rf}")
-    sums_path.write_text("\n".join(sums_lines) + "\n", encoding="utf-8")
+    sums_bytes = ("\n".join(sums_lines) + "\n").encode("utf-8")
 
-    with ui.spinner(f"Archiving {len(rel_files)} binaries into {bundle_name}..."):
+    with ui.spinner(
+        f"Archiving {len(rel_files)} files into {ui.bold(bundle_path.name)}..."
+    ):
         with tarfile.open(bundle_path, "w:gz") as tf:
-            tf.add(sums_path, arcname="SHA256SUMS")
+            ti = tarfile.TarInfo(name="SHA256SUMS")
+            ti.size = len(sums_bytes)
+            ti.mode = 0o644
+            tf.addfile(ti, io.BytesIO(sums_bytes))
             for rf in rel_files:
                 tf.add(root_dir / rf, arcname=rf)
 
-    ui.success(f"Created {ui.bold(bundle_name)} and {ui.bold('SHA256SUMS')}")
+    ui.success(
+        f"Created {ui.bold(bundle_path.name)} ({len(rel_files)} files + scoped SHA256SUMS)"
+    )
+    return sums_lines
+
+
+def create_release_bundle(
+    cfg: TundraConfig, root_dir: Path, scope: str = "all"
+) -> int:
+    """
+    Verifies declared binaries and builds separate server and client `.tar.gz` bundles:
+      - `tundra-server-mc<ver>.tar.gz` (`server/*` + `plugins/*` + scoped `SHA256SUMS`)
+      - `tundra-client-mc<ver>.tar.gz` (`client/*` + `.mrpack` + scoped `SHA256SUMS`)
+    Also writes a top-level `SHA256SUMS` file in `root_dir`.
+    """
+    norm_scope = (
+        "server"
+        if scope in ("server", "plugins", "server-all")
+        else ("client" if scope == "client" else "all")
+    )
+    verify_cat = (
+        "server-all"
+        if norm_scope == "server"
+        else ("client" if norm_scope == "client" else "all")
+    )
+
+    rc = sync_packages(cfg, root_dir, mode="verify", filter_cat=verify_cat)
+    if rc != 0:
+        ui.error(
+            "Cannot create release bundle while packages are missing or unverified."
+        )
+        return rc
+
+    all_sums_lines: list[str] = []
+    created_bundles: list[Path] = []
+
+    if norm_scope in ("all", "server"):
+        server_files = [
+            p.file_path
+            for p in cfg.packages
+            if p.category in ("server", "plugins") and (root_dir / p.file_path).is_file()
+        ]
+        if server_files:
+            srv_bundle = root_dir / f"tundra-server-mc{cfg.mc_version}.tar.gz"
+            all_sums_lines.extend(
+                _write_tar_with_sums(srv_bundle, root_dir, server_files)
+            )
+            created_bundles.append(srv_bundle)
+
+    if norm_scope in ("all", "client"):
+        mrpack_path = build_mrpack(cfg, root_dir)
+        client_files = [
+            p.file_path
+            for p in cfg.packages
+            if p.category == "client" and (root_dir / p.file_path).is_file()
+        ]
+        if mrpack_path and mrpack_path.is_file():
+            mrpack_rel = f"client/{mrpack_path.name}"
+            if mrpack_rel not in client_files:
+                client_files.append(mrpack_rel)
+        if client_files:
+            cli_bundle = root_dir / f"tundra-client-mc{cfg.mc_version}.tar.gz"
+            all_sums_lines.extend(
+                _write_tar_with_sums(cli_bundle, root_dir, client_files)
+            )
+            created_bundles.append(cli_bundle)
+
+    for bpath in created_bundles:
+        bsha = compute_sha256(bpath)
+        all_sums_lines.append(f"{bsha}  {bpath.name}")
+
+    sums_path = root_dir / "SHA256SUMS"
+    sums_path.write_text("\n".join(all_sums_lines) + "\n", encoding="utf-8")
+    ui.success(f"Updated top-level {ui.bold('SHA256SUMS')}")
     return 0
+
 
 
 def export_plugins_zip(cfg: TundraConfig, root_dir: Path) -> Path:
