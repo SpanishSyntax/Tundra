@@ -37,8 +37,6 @@ dependencies = []
 
 [project.scripts]
 tundra = "tundra.cli:main"
-tundra-server = "tundra.cli:main_server"
-tundra-client = "tundra.cli:main_client"
 
 [tool.setuptools.packages.find]
 where = ["."]

@@ -1,4 +1,4 @@
-"""CLI entrypoints and interactive configurator wizards for `tundra`, `tundra-server`, and `tundra-client`."""
+"""CLI entrypoints and interactive configurator wizards for `tundra` (`tundra server` and `tundra client`)."""
 
 import sys
 from pathlib import Path
@@ -121,13 +121,9 @@ def print_unified_help():
 
 {ui.blue("Usage:")}
   tundra                       Launch interactive Tundra dashboard (Server & Client)
-  tundra server [cmd] [opts]   Run the Server Configurator (`tundra-server`)
-  tundra client [cmd] [opts]   Run the Player / Client Installer (`tundra-client`)
+  tundra server [cmd] [opts]   Run the Server Configurator
+  tundra client [cmd] [opts]   Run the Player / Client Installer
   tundra <command> [options]
-
-{ui.blue("Dedicated Entrypoints:")}
-  tundra-server                Dedicated server backend (Paper/Purpur/Folia/Aternos) & plugin configurator
-  tundra-client                Dedicated player modpack (.mrpack / Fabric / Forge) configurator & installer
 
 {ui.blue("Commands:")}
   server                       Launch server configurator wizard or run server subcommands
@@ -345,7 +341,7 @@ def run_server_wizard(cfg: TundraConfig, manifest_path: Path) -> int:
         [
             ("download", "Download & verify server/ and plugins/ binaries now"),
             ("zip", "Download plugins & export a .zip for managed server panel (Aternos/Pterodactyl)"),
-            ("skip", "Save tundra.toml only (download later with `tundra-server sync`)"),
+            ("skip", "Save tundra.toml only (download later with `tundra server sync`)"),
         ],
     )
     if next_step == "download":
@@ -359,7 +355,7 @@ def run_server_wizard(cfg: TundraConfig, manifest_path: Path) -> int:
 
 
 # ==============================================================================
-# Interactive Player / Client Installer Wizard (`tundra-client`)
+# Interactive Player / Client Installer Wizard (`tundra client`)
 # ==============================================================================
 def run_client_wizard(cfg: TundraConfig, manifest_path: Path) -> int:
     root_dir = manifest_path.parent
@@ -499,7 +495,7 @@ def run_client_wizard(cfg: TundraConfig, manifest_path: Path) -> int:
         "Download client mods and generate Prism Launcher .mrpack now?",
         [
             ("yes", "Download verified client mods & build Tundra-Client.mrpack now"),
-            ("skip", "Save tundra.toml only (run `tundra-client sync` later)"),
+            ("skip", "Save tundra.toml only (run `tundra client sync` later)"),
         ],
     )
     if install_now == "yes":
@@ -508,7 +504,7 @@ def run_client_wizard(cfg: TundraConfig, manifest_path: Path) -> int:
 
 
 # ==============================================================================
-# Entrypoints (`tundra-server`, `tundra-client`, `tundra`)
+# Entrypoints (`tundra server`, `tundra client`, `tundra`)
 # ==============================================================================
 def _parse_common_flags(args: list[str]) -> tuple[list[str], dict[str, Any]]:
     opts: dict[str, Any] = {
@@ -586,9 +582,9 @@ def _parse_common_flags(args: list[str]) -> tuple[list[str], dict[str, Any]]:
 
 
 def main_server(argv: list[str] | None = None) -> int:
-    """Dedicated entrypoint for `tundra-server`."""
+    """Dedicated entrypoint for `tundra server`."""
     handle_color_args()
-    ui.set_identity("tundra-server", icon="🏔️", badge_color="1;34")
+    ui.set_identity("tundra server", icon="🏔️", badge_color="1;34")
     raw_args = argv if argv is not None else sys.argv[1:]
 
     if any(a in ("-h", "--help", "help") for a in raw_args):
@@ -642,14 +638,14 @@ def main_server(argv: list[str] | None = None) -> int:
     if cmd == "bundle":
         return create_release_bundle(cfg, root_dir, scope="server")
 
-    ui.error(f"Unknown server command '{cmd}'. Run `tundra-server --help` for usage.")
+    ui.error(f"Unknown server command '{cmd}'. Run `tundra server --help` for usage.")
     return 1
 
 
 def main_client(argv: list[str] | None = None) -> int:
-    """Dedicated entrypoint for `tundra-client`."""
+    """Dedicated entrypoint for `tundra client`."""
     handle_color_args()
-    ui.set_identity("tundra-client", icon="🧊", badge_color="1;36")
+    ui.set_identity("tundra client", icon="🧊", badge_color="1;36")
     raw_args = argv if argv is not None else sys.argv[1:]
 
     if any(a in ("-h", "--help", "help") for a in raw_args):
@@ -709,7 +705,7 @@ def main_client(argv: list[str] | None = None) -> int:
     if cmd == "inspect-deps":
         return run_offline_jar_inspector(cfg, root_dir, filter_cat="client")
 
-    ui.error(f"Unknown client command '{cmd}'. Run `tundra-client --help` for usage.")
+    ui.error(f"Unknown client command '{cmd}'. Run `tundra client --help` for usage.")
     return 1
 
 
@@ -744,12 +740,12 @@ def main() -> int:
                 [
                     (
                         "server",
-                        "Server Configurator (tundra-server)",
+                        "Server Configurator (tundra server)",
                         "Pick Paper/Purpur/Folia/Aternos backend, toggle plugins, & sync ./plugins/",
                     ),
                     (
                         "client",
-                        "Player Client Installer (tundra-client)",
+                        "Player Client Installer (tundra client)",
                         "Pick Fabric (Sodium/Iris) or Forge (Embeddium/Oculus) & build .mrpack",
                     ),
                     (
