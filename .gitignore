@@ -1,0 +1,11 @@
+# Ignored binary packages (managed via packages.tsv and download.sh)
+client/*.jar
+client/*.exe
+plugins/*.jar
+
+# Release bundles & temporary download artifacts
+*.tar.gz
+*.zip
+*.part
+*.tmp
+SHA256SUMS
