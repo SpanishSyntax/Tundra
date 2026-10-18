@@ -94,6 +94,9 @@ version = "1.7.3-b131"
 sha256 = "a6b5ed97f43a5cf5bbaf00a7c8cd23c5afc9bd003f849875af8b36e6cf77d01d"
 source_url = "https://github.com/MilkBowl/Vault/releases/download/1.7.3/Vault.jar"
 purpose = "Permissions, chat, and economy service API bridging LuckPerms with EssentialsX & Multiverse"
+sha1 = "e1e443a08d3280f9dbcb233a8c3a20d4c1286a6d"
+sha512 = "aa02af3c9770249bda77b91058ce97240d4fd4cba3f07918534127acace297feb05445122b499c2623123dfde49670e9a763221e0f41ef03f51e6880ea8f6647"
+file_size = 272259
 
 [[packages]]
 key = "essentialsx"
